@@ -1,5 +1,6 @@
 $.ajaxSetup({async: false});
-const start = 'https://nyc.cs.berkeley.edu:8081/service/gamesman/puzzles/4to0/getStart';
+const url_endpoint = 'https://nyc.cs.berkeley.edu/classic/service/gamesman/puzzles/4to0/'
+const start = `${url_endpoint}/getStart`;
 var value = 11;
 var response1 = 0;
 var response2 = 0;
@@ -8,11 +9,11 @@ $(document).ready(function() {
         value = result['response'];
         $('#board').replaceWith(`<h1 id="board">${value}</h1>`);
     });
-    var url = `https://nyc.cs.berkeley.edu:8081/service/gamesman/puzzles/4to0/getMoveValue?board=${value}`
+    var url = `${url_endpoint}getMoveValue?board=${value}`
     $.getJSON(url, function(result){
         $('#value').replaceWith(`<h2 id="value">${result['response']['value']}</h2>`);
     });
-    var next = `https://nyc.cs.berkeley.edu:8081/service/gamesman/puzzles/4to0/getNextMoveValues?board=${value}`;
+    var next = `${url_endpoint}getNextMoveValues?board=${value}`;
     $.getJSON(next, function(result){
         response1 = result['response'][0];
         response2 = result['response'][1];
@@ -37,7 +38,7 @@ $('.btn1').click(function(){
     $('#board').replaceWith(`<h1 id="board">${response1['board']}</h1>`);
     $('#value').replaceWith(`<h2 id="value">${response1['value']}</h2>`);
     value = response1['board'];
-    var next = `https://nyc.cs.berkeley.edu:8081/service/gamesman/puzzles/4to0/getNextMoveValues?board=${value}`;
+    var next = `${url_endpoint}getNextMoveValues?board=${value}`;
     $.getJSON(next, function(result){
         response1 = result['response'][0];
         $('.btn1').css("background-color", "black");
@@ -62,7 +63,7 @@ $('.btn2').click(function(){
     $('#board').replaceWith(`<h1 id="board">${response2['board']}</h1>`);
     $('#value').replaceWith(`<h2 id="value">${response2['value']}</h2>`);
     value = response2['board'];
-    var next = `https://nyc.cs.berkeley.edu:8081/service/gamesman/puzzles/4to0/getNextMoveValues?board=${value}`;
+    var next = `${url_endpoint}getNextMoveValues?board=${value}`;
     $.getJSON(next, function(result){
         response1 = result['response'][0];
         $('.btn1').css("background-color", "black");
@@ -88,11 +89,11 @@ $('.restart').click(function(){
         value = result['response'];
         $('#board').replaceWith(`<h1 id="board">${value}</h1>`);
     });
-    var url = `https://nyc.cs.berkeley.edu:8081/service/gamesman/puzzles/4to0/getMoveValue?board=${value}`
+    var url = `${url_endpoint}getMoveValue?board=${value}`
     $.getJSON(url, function(result){
         $('#value').replaceWith(`<h2 id="value">${result['response']['value']}</h2>`);
     });
-    var next = `https://nyc.cs.berkeley.edu:8081/service/gamesman/puzzles/4to0/getNextMoveValues?board=${value}`;
+    var next = `${url_endpoint}getNextMoveValues?board=${value}`;
     $.getJSON(next, function(result){
         response1 = result['response'][0];
         response2 = result['response'][1];
