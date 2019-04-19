@@ -44,7 +44,7 @@ $('.btn1').click(function(){
     value = response1['board'];
     var next = `${url_endpoint}getNextMoveValues?board=${value}`;
     $.getJSON(next, function(result){
-        pMoves.push({remoteness: Math.floor(Math.random()*10), value: winlose[Math.floor(Math.random()*2)]})
+        pMoves.push({remoteness: response1["board"], value: response1["value"]})
         drawMVH(pMoves);
         response1 = result['response'][0];
         $('.btn1').css("background-color", "black");
@@ -71,7 +71,7 @@ $('.btn2').click(function(){
     value = response2['board'];
     var next = `${url_endpoint}getNextMoveValues?board=${value}`;
     $.getJSON(next, function(result){
-        pMoves.push({remoteness: Math.floor(Math.random()*10), value: winlose[Math.floor(Math.random()*2)]})
+        pMoves.push({remoteness: response2["board"], value: response2["value"]})
         drawMVH(pMoves);
         response1 = result['response'][0];
         $('.btn1').css("background-color", "black");
@@ -80,7 +80,6 @@ $('.btn2').click(function(){
         } else if (response1["value"] == "lose") {
             $('.btn1').css("background-color", "green");
         }
-        // $('.btn1').html(response1['board']);
         response2 = result['response'][1];
         $('.btn2').css("background-color", "black");
         if (response2["value"] == "win"){
@@ -88,7 +87,6 @@ $('.btn2').click(function(){
         } else if (response2["value"] == "lose") {
             $('.btn2').css("background-color", "green");
         }
-        // $('.btn2').html(response2['board']);
     });
 });
 
