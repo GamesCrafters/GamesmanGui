@@ -1,0 +1,88 @@
+html, body, h1, h2, h3, h4, h5, h6, ul, ol, dl { margin: 0; padding: 0 }
+html { font: 1em/1.2 Helvetica, Arial, sans-serif }
+body { color: #fff; background-color: #006; margin: 0 auto }
+h1, h2, h3, h4, h5, h6 { }
+:link, :visited { color: #01b }
+.nav :link, .nav :visited { color: #fff }
+body > .footer :link, body > .footer :visited { color: #4bf }
+
+body > .header {
+  background: #006;
+  font-weight: bold;
+  padding: 0.5em 0 0em 1em; color: #fc3;
+  border-bottom: 2px #0f4d92 solid
+}
+body > .header h1 {
+  display: inline-block; font: bold 2.5em Calibri, Helvetica, Arial, sans-serif;
+  vertical-align: top; margin: 0.15em 0 0 0.25em;
+  color: white;
+}
+
+#container { padding-left: 10em; padding-right: 330px }
+.nav, #main, #moves { float: left; padding-bottom: 1em }
+#main { width: 100%; padding-left: 1.5em; padding-right: 1.5em; margin-right: -3em }
+#moves { margin: 1em 0 }
+.nav > *, #moves > * { font-size: 0.85em }
+
+.nav { left: -10em; width: 9.9em; padding: 2.5em 0 3em 0.1em; position: relative }
+.nav h2 { margin-top: 0.5em }
+.nav > ul { list-style: none; margin: 0 0.5em 0 1em }
+.nav h2, #moves h1 {
+  text-align: center; font-size: 1em; text-transform: uppercase; color: #fc3;
+  font: 1em "Trebuchet MS", Calibri, "Lucida Sans", "Bitstream Vera Sans", sans-serif
+}
+
+.win-move { background-color: #008000 }
+.tie-move { background-color: #ff0 }
+.lose-move { background-color: #8a0000 }
+
+#options { margin-left: 0.5em; list-style: none; font-size: 0.9em }
+
+#main { width: 100%; margin-left: -10em }
+#main h1 { font-size: 1.5em; margin: 0.25em 0 0.5em; text-align: center }
+#main h2 { font-size: 1.2em }
+#main * + h2 { margin-top: 0.75em }
+#main p { margin: 0.25em 0 }
+
+#game { width: 98%; margin: 0.5em auto; outline: 1px solid #aaf; padding: 1% }
+
+#moves {
+  width: 10em; padding-left: 1em; padding-right: 1em; float: right; margin-right: -15em;
+  border-left: thin solid #0f4d92; margin-top: 2em; font-size: 0.9em
+}
+#moves p { margin: 0.25em 0 }
+#moves h1 { }
+#moves * + h1 { margin-top: 0.5em }
+
+#moves-inside { width: 250px; }
+
+#timer { float: right; margin: 2px; padding-left: 1em; padding-right: 0.5em; font-size: 2.5em; text-align: center}
+#nr-moves { float: right; margin: 2px; padding: 0.5em; font-size: 1.5em; text-align: left}
+
+#move-value-key { margin-top: 0.5em }
+#move-value-key table { margin-left: 0.5em; list-style: none; text-align: center; width: 100% }
+#move-value-key td { width: 33% }
+#move-value-key img { width: 1em; height: 1em; border: 1px #000 solid }
+
+#move-value-history { margin-top: 0.5em }
+#history-tree { min-height: 20em }
+
+#move-value-history-labels{width: 85%;}
+#min-remoteness, #mid-remoteness, #max-remoteness {width: 33%;}
+#min-remoteness {text-align: left;}
+#mid-remoteness {text-align: center;}
+#max-remoteness {text-align: right;}
+
+#history-graph-container { padding-left: 5px; padding-right: 5px; width: 100%; min-height: 20em }
+#history-graph { width: 100%; padding: 0 }
+
+body > .footer {
+  clear: both; color: #fc3; text-align: center; background: #006;
+  padding: 0.5em 0; border-top: 2px #0f4d92 solid
+}
+body > .footer li { display: inline }
+body > .footer li + li::before { content: "- " }
+
+ul, ol { margin-left: 1.2em }
+input, button, select { font-size: 1em }
+.clear { clear: both }

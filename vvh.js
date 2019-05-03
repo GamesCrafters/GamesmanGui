@@ -24,9 +24,9 @@ function vvh_main(name1, name2, rv, mv, pv, rmax) {
 		}*/
 		var vvh = new vvh((canvas.width - 40) / (2 * (rmax * 1 + 1)), 10, 10,
 				1, 1 + Math.floor(rmax * 10 / canvas.width), 1, "#66FF00",
-				"#FFFF00", "#8A0000", "black", "white");
+				"#FFFF00", "#8A0000", "white", "#006");
 		canvas.height = (input.length + 3) * vvh.ts;
-		
+
 		//alert(vvh.win+" | "+vvh.tie+" | "+vvh.lose);
 		draw(game, vvh, canvas, input, rmax);
 
@@ -54,7 +54,7 @@ function vvh_main(name1, name2, rv, mv, pv, rmax) {
 		this.t = t; // win lose tie
 		this.p = p; // player
 	}
-	
+
 	function pair(r,t){
 	this.r = r;
 	this.t = t;}
@@ -63,8 +63,8 @@ function vvh_main(name1, name2, rv, mv, pv, rmax) {
 
 		var i, p;
 		var coordinates = convert(input);
-		
-	
+
+
 		// Coordinates Function - Converts an array of remoteness win-lose-tie
 		// values into XY canvas coordinate values
 		// Negative Remoteness => Player 2 Winning
@@ -90,7 +90,7 @@ function vvh_main(name1, name2, rv, mv, pv, rmax) {
 				temp = new pair(rc,tc);
 				result.push(temp);
 			}
-			
+
 			return result;
 		}
 
@@ -198,7 +198,7 @@ function vvh_main(name1, name2, rv, mv, pv, rmax) {
 			roc = coordinates[i - 1].r;
 			toc = coordinates[i - 1].t;
 			t = input[i].t;
-			
+
 			dots(rc, tc, t);
 		}
 
