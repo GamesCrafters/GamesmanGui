@@ -6,41 +6,76 @@ var response1 = 0;
 var response2 = 0;
 var pMoves = [];
 var winlose = ["win", "lose"];
+
+function reset() {
+    $.getJSON(start, function(result) {
+        value = result['response'];
+        $('#board').replaceWith(`<h1 id="board">${value}</h1>`);
+    });
+    var url = `${url_endpoint}getMoveValue?board=${value}`
+    $.getJSON(url, function(result) {
+        $('#value').replaceWith(`<h2 id="value">${result['response']['value']}</h2>`);
+    });
+    var next = `${url_endpoint}getNextMoveValues?board=${value}`;
+    $.getJSON(next, function(result) {
+        response1 = result['response'][0];
+        response2 = result['response'][1];
+        $('.btn1').css("background-color", "black");
+        $('.btn2').css("background-color", "black");
+        if (response1["value"] == "win") {
+            $('.btn1').css("background-color", "red");
+        }
+        else if (response1["value"] == "lose") {
+            $('.btn1').css("background-color", "green");
+        }
+        if (response2["value"] == "win") {
+            $('.btn2').css("background-color", "red");
+        }
+        else if (response2["value"] == "lose") {
+            $('.btn2').css("background-color", "green");
+        }
+        pMoves = [];
+        drawMVH(pMoves);
+        // $('.btn1').html(response1['board']);
+        // $('.btn2').html(response2['board']);
+    });
+}
+
 $(document).ready(function() {
-    reset();
-    // $.getJSON(start, function(result) {
-    //     value = result['response'];
-    //     $('#board').replaceWith(`<h1 id="board">${value}</h1>`);
-    // });
-    // var url = `${url_endpoint}getMoveValue?board=${value}`
-    // $.getJSON(url, function(result) {
-    //     $('#value').replaceWith(`<h2 id="value">${result['response']['value']}</h2>`);
-    //     pMoves.push({ remoteness: result["board"], value: result["value"] })
-    //     drawMVH(pMoves);
-    // });
-    // var next = `${url_endpoint}getNextMoveValues?board=${value}`;
-    // $.getJSON(next, function(result) {
-    //     response1 = result['response'][0];
-    //     response2 = result['response'][1];
-    //     drawMVH(pMoves);
-    //     $('.btn1').css("background-color", "black");
-    //     $('.btn2').css("background-color", "black");
-    //     if (response1["value"] == "win") {
-    //         $('.btn1').css("background-color", "red");
-    //     }
-    //     else if (response1["value"] == "lose") {
-    //         $('.btn1').css("background-color", "green");
-    //     }
-    //     if (response2["value"] == "win") {
-    //         $('.btn2').css("background-color", "red");
-    //     }
-    //     else if (response2["value"] == "lose") {
-    //         $('.btn2').css("background-color", "green");
-    //     }
+    $.getJSON(start, function(result) {
+        value = result['response'];
+        $('#board').replaceWith(`<h1 id="board">${value}</h1>`);
+    });
+    var url = `${url_endpoint}getMoveValue?board=${value}`
+    $.getJSON(url, function(result) {
+        $('#value').replaceWith(`<h2 id="value">${result['response']['value']}</h2>`);
+        pMoves.push({ remoteness: result["board"], value: result["value"] })
+        drawMVH(pMoves);
+    });
+    var next = `${url_endpoint}getNextMoveValues?board=${value}`;
+    $.getJSON(next, function(result) {
+        response1 = result['response'][0];
+        response2 = result['response'][1];
+        drawMVH(pMoves);
+        $('.btn1').css("background-color", "black");
+        $('.btn2').css("background-color", "black");
+        if (response1["value"] == "win") {
+            $('.btn1').css("background-color", "red");
+        }
+        else if (response1["value"] == "lose") {
+            $('.btn1').css("background-color", "green");
+        }
+        if (response2["value"] == "win") {
+            $('.btn2').css("background-color", "red");
+        }
+        else if (response2["value"] == "lose") {
+            $('.btn2').css("background-color", "green");
+        }
 
         // $('.btn1').html(response1['board']);
         // $('.btn2').html(response2['board']);
     });
+    reset();
 });
 
 $('.btn1').click(function() {
@@ -103,40 +138,6 @@ $('.btn2').click(function() {
 });
 
 $('.restart').click(reset());
-
-function reset() {
-    $.getJSON(start, function(result) {
-        value = result['response'];
-        $('#board').replaceWith(`<h1 id="board">${value}</h1>`);
-    });
-    var url = `${url_endpoint}getMoveValue?board=${value}`
-    $.getJSON(url, function(result) {
-        $('#value').replaceWith(`<h2 id="value">${result['response']['value']}</h2>`);
-    });
-    var next = `${url_endpoint}getNextMoveValues?board=${value}`;
-    $.getJSON(next, function(result) {
-        response1 = result['response'][0];
-        response2 = result['response'][1];
-        $('.btn1').css("background-color", "black");
-        $('.btn2').css("background-color", "black");
-        if (response1["value"] == "win") {
-            $('.btn1').css("background-color", "red");
-        }
-        else if (response1["value"] == "lose") {
-            $('.btn1').css("background-color", "green");
-        }
-        if (response2["value"] == "win") {
-            $('.btn2').css("background-color", "red");
-        }
-        else if (response2["value"] == "lose") {
-            $('.btn2').css("background-color", "green");
-        }
-        pMoves = [];
-        drawMVH(pMoves);
-        // $('.btn1').html(response1['board']);
-        // $('.btn2').html(response2['board']);
-    });
-}
 
 function drawMVH(pMoves) {
     /* find maximum remoteness */
